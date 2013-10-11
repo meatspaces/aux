@@ -31,4 +31,8 @@ angular.module('aux.controllers', []).
   }).
   controller('HomeCtrl', function ($scope, $http) {
 
+  }).
+  controller('ErrorLoginCtrl', function ($rootScope) {
+    $rootScope.isAuthenticated = false;
+    $rootScope.email = null;
   });

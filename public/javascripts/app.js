@@ -11,6 +11,10 @@ config(function ($routeProvider, $locationProvider) {
       controller: 'HomeCtrl',
       templateUrl: 'partials/home.html'
     })
+    .when('/invalid/login', {
+      controller: 'ErrorLoginCtrl',
+      templateUrl: 'partials/error_login.html'
+    })
     .otherwise({
       redirectTo: '/'
     });

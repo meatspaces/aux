@@ -12,12 +12,12 @@ html(ng-app='aux')
   body(ng-controller='AppCtrl')
     #wrapper
       header
-        span.title.header aux.meatspac.es
+        a.title.header(href='/') aux.meatspac.es
         ul.authenticate.title
           li(ng-if='isAuthenticated')
-            a.add(href='javascript:;', ng-click='add()') +
-          li(ng-if='isAuthenticated')
             a(href='javascript:;', ng-click='logout()') Logout
+          li(ng-if='isAuthenticated')
+            a.add(href='javascript:;', ng-click='add()') +
           li(ng-if='!isAuthenticated')
             a(href='javascript:;', ng-click='login()') Sign in
       block content

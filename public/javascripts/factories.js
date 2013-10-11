@@ -1,7 +1,12 @@
 'use strict';
 
 angular.module('aux.factories', []).
-  factory('persona', function ($rootScope, $http) {
+  factory('persona', function ($rootScope, $http, $location) {
+    var resetUser = function () {
+      localStorage.removeItem('personaEmail');
+      $rootScope.isAuthenticated = false;
+    };
+
     var login = function () {
       navigator.id.get(function (assertion) {
         if (!assertion) {
@@ -15,24 +20,28 @@ angular.module('aux.factories', []).
         }).success(function (data) {
 
           if (data.status === 'okay') {
-            localStorage.setItem('personaEmail', data.email);
-            $rootScope.isAuthenticated = true;
-
             $http({
               url: '/login',
               method: 'GET'
             }).success(function (data) {
 
+              localStorage.setItem('personaEmail', data.email);
+              $rootScope.isAuthenticated = true;
               $rootScope.userId = data.userId;
+              $location.path('/');
             }).error(function (data) {
 
-              console.log('Login failed because ' + data);
+              resetUser();
+              $location.path('/invalid/login');
             });
           } else {
-            console.log('Login failed because ' + data.reason);
+
+            resetUser();
+            console.log('Login failed because ' + data);
           }
         }).error(function (data) {
 
+          resetUser();
           console.log('error logging in: ', data);
         });
       });
@@ -45,14 +54,16 @@ angular.module('aux.factories', []).
       }).success(function (data) {
 
         if (data.status === 'okay') {
-          localStorage.removeItem('personaEmail');
-          $rootScope.isAuthenticated = false;
-          document.location.href = '/logout';
+
+          resetUser();
         } else {
+
+          resetUser();
           console.log('Logout failed because ' + data.reason);
         }
       }).error(function (data) {
 
+        resetUser();
         console.log('error logging out: ', data);
       })
     };

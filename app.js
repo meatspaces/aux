@@ -14,7 +14,8 @@ var isLoggedIn = function(req, res, next) {
   if (req.session.email && whitelist.indexOf(req.session.email) > -1) {
     next();
   } else {
-    res.redirect('/');
+    res.status(400);
+    next(new Error('Invalid login'));
   }
 };
 

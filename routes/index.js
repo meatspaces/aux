@@ -7,10 +7,6 @@ module.exports = function(app, isLoggedIn) {
     });
   });
 
-  app.get('/logout', isLoggedIn, function (req, res) {
-    res.redirect('/');
-  });
-
   app.get('/*', function (req, res) {
     res.render('index');
   });

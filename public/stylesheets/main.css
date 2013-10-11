@@ -92,6 +92,10 @@ header {
     padding: 20px;
 }
 
+a.header {
+    color: #111;
+}
+
 .authenticate {
     float: right;
     text-align: center;
@@ -101,7 +105,7 @@ header {
 
 .authenticate li {
     display: inline;
-    float: left;
+    float: right;
 }
 
 .authenticate li a {
@@ -131,6 +135,7 @@ header {
 }
 
 main {
+    color: #eee;
     padding: 20px;
 }
 
