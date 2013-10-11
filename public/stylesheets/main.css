@@ -47,19 +47,87 @@ table {
     border-spacing: 0;
 }
 
+@font-face {
+    font-family: 'digital_dreamregular';
+    src: url('../fonts/DIGITALDREAM-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 html, body {
     height: 100%;
     position: relative;
 }
 
-#wrapper {
+a {
+    text-decoration: none;
+}
+
+header {
     background-color: #eee;
+    height: 58px;
+    width: 100%;
+}
+
+#wrapper {
+    background-color: #111;
+    font-family: Helvetica, Arial, sans-serif;
     height: 100%;
     margin: 0 auto;
     max-width: 1020px;
     min-width: 320px;
     position: relative;
     width: 100%;
+}
+
+.title {
+    font-family: 'digital_dreamregular';
+    letter-spacing: 0.05rem;
+}
+
+.header {
+    display: inline-block;
+    font-size: 1.3rem;
+    padding: 20px;
+}
+
+.authenticate {
+    float: right;
+    text-align: center;
+    width: 159px;
+    z-index: 2;
+}
+
+.authenticate li {
+    display: inline;
+    float: left;
+}
+
+.authenticate li a {
+    background-color: #111;
+    color: #eee;
+    display: inline-block;
+    font-size: 0.8rem;
+    line-height: 1rem;
+    height: 35px;
+    margin-left: 3px;
+    padding: 20px 8px 0 8px;
+    width: 80px;
+}
+
+.authenticate li a.add {
+    font-size: 1.5rem;
+    width: 40px;
+}
+
+.authenticate li a:hover {
+    background-color: #fff;
+    color: #111;
+}
+
+.content {
+    margin: 30px 0;
 }
 
 main {

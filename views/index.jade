@@ -2,11 +2,4 @@ extend layout
 
 block content
   main(role="main")
-    #header
-      h1 aux.meatspac.es
-      ul
-        li(ng-if='isAuthenticated')
-          a(href='javascript:;', ng-click='logout()') Logout
-        li(ng-if='!isAuthenticated')
-          a(href='javascript:;', ng-click='login()') Sign in
-    div(ng-view)
+    div.content(ng-view)
