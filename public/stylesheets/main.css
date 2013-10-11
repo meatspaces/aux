@@ -60,6 +60,11 @@ html, body {
     position: relative;
 }
 
+h1 {
+    font-size: 1.8rem;
+    line-height: 2.2rem;
+}
+
 a {
     text-decoration: none;
 }
@@ -79,6 +84,15 @@ header {
     min-width: 320px;
     position: relative;
     width: 100%;
+}
+
+.error {
+    margin: 30px 0;
+    line-height: 2rem;
+}
+
+.error a {
+    color: #c1ea1c;
 }
 
 .title {
