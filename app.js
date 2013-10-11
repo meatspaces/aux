@@ -21,7 +21,11 @@ require('express-persona')(app, {
   audience: nconf.get('domain') + ':' + nconf.get('authPort')
 });
 
+app.use(function(req, res) {
+  res.sendfile(__dirname + '/views/layout.jade');
+});
+
 // routes
-require("./routes")(app, isLoggedIn);
+require('./routes')(app, isLoggedIn);
 
 app.listen(process.env.PORT || nconf.get('port'));
