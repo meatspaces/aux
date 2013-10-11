@@ -1,0 +1,21 @@
+!!! 5
+html
+  head
+    title aux
+    meta(content='width=device-width, height=device-height, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0', name='viewport')
+    meta(content='yes', name='apple-mobile-web-app-capable')
+    meta(content='chrome=1', http-equiv='X-UA-Compatible')
+    base(href='/')
+    link(rel='shortcut icon', href='/images/favicon.png')
+    link(rel='stylesheet', href='/stylesheets/main.css')
+  body
+    #wrapper
+      header
+        a.title.bookmarklet + Youtube/Vimeo URL
+      form(method='post')
+        input(type='text', name='title', placeholder='title')
+        input(type='text', name='url', placeholder='url')
+        button(type='submit') Add
+
+    script(src='/javascripts/vendor/jquery.js')
+    script(src='/javascripts/bookmarklet.js')

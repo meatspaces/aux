@@ -61,8 +61,8 @@ html, body {
 }
 
 h1 {
-    font-size: 1.8rem;
-    line-height: 2.2rem;
+    font-size: 1.5rem;
+    line-height: 2.3rem;
 }
 
 a {
@@ -100,13 +100,46 @@ header {
     letter-spacing: 0.05rem;
 }
 
-a.header {
+button {
+    background-color: #222;
+    border: 2px solid #333;
+    color: #fff;
+    display: block;
+    font-size: 2rem;
+    margin: 10px auto;
+    padding: 5px 10px;
+    width: 100px;
+}
+
+button:hover {
+    background-color: #8cff71;
+    color: #3a8628;
+}
+
+form input {
+    background-color: #c5fcff;
+    border: 0;
+    font-size: 1.5em;
+    margin: 3px 0 0;
+    padding: 5px;
+    width: 100%;
+}
+
+form input:last-child {
+    background-color: #fdff71;
+}
+
+a.header, a.bookmarklet {
     color: #111;
     display: inline-block;
     font-size: 1.3rem;
     height: 18px;
     line-height: 1.2rem;
     padding: 20px;
+}
+
+a.bookmarklet {
+    font-size: 1rem;
 }
 
 a.header:hover {
@@ -123,6 +156,7 @@ a.header:hover {
 .authenticate li {
     display: inline;
     float: right;
+    position: relative;
 }
 
 .authenticate li a {
@@ -137,14 +171,45 @@ a.header:hover {
     width: 80px;
 }
 
+.tip {
+    background-color: #f00;
+    color: #fff;
+    display: none;
+    font-family: Arial;
+    font-size: 1rem;
+    left: -160px;
+    line-height: 1.2rem;
+    position: absolute;
+    text-align: left;
+    top: 55px;
+    z-index: 2;
+    width: 219px;
+}
+
+.tip div {
+    padding: 10px;
+}
+
+.tip .second {
+    background-color: #ff5959;
+}
+
 .authenticate li a.add {
     font-size: 1.5rem;
     width: 40px;
 }
 
+.authenticate li.add-parent:hover .tip {
+    display: block;
+}
+
 .authenticate li a:hover {
     background-color: #fff;
     color: #111;
+}
+
+.authenticate li a.add:hover {
+    background-color: #fdff59;
 }
 
 .content {

@@ -16,8 +16,11 @@ html(ng-app='aux')
         ul.authenticate.title
           li(ng-if='isAuthenticated')
             a(href='javascript:;', ng-click='logout()') Logout
-          li(ng-if='isAuthenticated')
-            a.add(href='javascript:;', ng-click='add()') +
+          li.add-parent(ng-if='isAuthenticated')
+            a.add(href="javascript:(function(){window.open('/add?url='+encodeURIComponent(window.location.href),'aux bookmarklet','left=200,top=200,width=320,height=300,personalbar=0,toolbar=0,scrollbars=0,resizable=0')})()") +
+            span.tip
+              .first 1. Drag this + to your bookmarks
+              .second 2. Visit Youtube or Vimeo and run the bookmarklet
           li(ng-if='!isAuthenticated')
             a(href='javascript:;', ng-click='login()') Sign in
       block content

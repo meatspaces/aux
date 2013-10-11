@@ -15,6 +15,10 @@ config(function ($routeProvider, $locationProvider) {
       controller: 'ErrorLoginCtrl',
       templateUrl: 'partials/error_login.html'
     })
+    .when('/add', {
+      controller: 'MediaCtrl',
+      templateUrl: 'partials/add.html'
+    })
     .otherwise({
       redirectTo: '/'
     });
