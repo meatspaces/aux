@@ -14,6 +14,10 @@ Install node by using brew or through the website http://nodejs.org/#download
 
 > cp local.json-dist local.json
 
+Copy the whitelist over and add all admin emails
+
+> cp whitelist.json-dist whitelist.json
+
 > npm install
 
 Run the site
