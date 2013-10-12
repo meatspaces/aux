@@ -92,7 +92,7 @@ module.exports = function(app, meat, isLoggedIn, nconf) {
     });
   });
 
-  app.get('/api/share/:id', function (req, res) {
+  app.get('/api/v/:id', function (req, res) {
     meat.get(req.params.id, function (err, post) {
       if (err || (!req.session.email && post.meta.isPrivate)) {
 
@@ -108,6 +108,21 @@ module.exports = function(app, meat, isLoggedIn, nconf) {
           isAdmin: utils.isEditor(req),
           prev: false,
           next: false
+        });
+      }
+    });
+  });
+
+  app.delete('/api/v/:id', function (req, res) {
+    meat.del(req.params.id, function (err, status) {
+      if (err) {
+        res.status(400);
+        res.json({
+          message: err.toString()
+        })
+      } else {
+        res.json({
+          message: 'deleted'
         });
       }
     });

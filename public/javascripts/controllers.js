@@ -90,17 +90,30 @@ angular.module('aux.controllers', []).
       console.log('could not retrieve posts');
     });
   }).
-  controller('MediaCtrl', function ($scope, $http, $routeParams, $rootScope, $sce) {
+  controller('MediaCtrl', function ($scope, $http, $routeParams, $rootScope, $sce, $location) {
     $scope.id = parseInt($routeParams.id, 10);
 
     $scope.trustSrc = function (src) {
       return $sce.trustAsResourceUrl(src);
     }
 
+    $scope.deletePost = function (post) {
+      $http({
+        url: '/api/v/' + post.id,
+        method: 'DELETE'
+      }).success(function (data) {
+
+        $location.path('/');
+      }).error(function (data) {
+
+        console.log('could not delete');
+      });
+    };
+
     $rootScope.isSecondary = true;
 
     $http({
-      url: '/api/share/' + $scope.id,
+      url: '/api/v/' + $scope.id,
       method: 'GET'
     }).success(function (data) {
       var url = $rootScope.getVideoId(data.post);

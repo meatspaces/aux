@@ -19,7 +19,7 @@ config(function ($routeProvider, $locationProvider) {
       controller: 'MediaCtrl',
       templateUrl: 'partials/add.html'
     })
-    .when('/share/:id', {
+    .when('/v/:id', {
       controller: 'MediaCtrl',
       templateUrl: 'partials/single.html'
     })

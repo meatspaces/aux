@@ -61,6 +61,7 @@ html, body {
 }
 
 h1 {
+    color: #fff;
     font-size: 1.5rem;
     line-height: 2.3rem;
     overflow: hidden;
@@ -292,10 +293,33 @@ a.header:hover, a.back:hover {
 }
 
 main {
-    color: #eee;
     float: left;
+    font-size: 1.3rem;
     height: 100%;
     width: 100%;
+}
+
+.actions {
+    float: left;
+    margin: 20px 0;
+    width: 100%;
+}
+
+.actions a {
+    font-size: 0.9rem;
+    display: inline-block;
+    font-family: 'digital_dreamregular';
+    padding: 15px 20px;
+}
+
+.actions .delete {
+    background-color: #f00;
+    color: #ffcdcd;
+}
+
+.actions .delete:hover {
+    background-color: #fff;
+    color: #f00;
 }
 
 @media only screen and (max-width: 815px) {
@@ -309,6 +333,11 @@ main {
     h1 {
         font-size: 1.1rem;
         width: 65%;
+    }
+
+    .actions a {
+        font-size: 0.8rem;
+        padding: 10px 20px;
     }
 
     .authenticate {

@@ -2,10 +2,10 @@
 
 <ul class="videos">
   <li ng-repeat="post in posts">
-    <a href="/share/{{ post.id }}" ng-if="isVimeo(post)">
+    <a href="/v/{{ post.id }}" ng-if="isVimeo(post)">
       <img src="{{ post.src }}">
     </a>
-    <a href="/share/{{ post.id }}" ng-if="isYoutube(post)">
+    <a href="/v/{{ post.id }}" ng-if="isYoutube(post)">
       <img src="{{ post.src }}">
     </a>
   </li>
