@@ -51,6 +51,7 @@ angular.module('aux.controllers', []).
         p.videoId = url[url.length - 1].split('&amp;list')[0];
       } else {
 
+        url = url.split('&amp;list')[0];
         p.videoId = url;
       }
 
