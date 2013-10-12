@@ -41,11 +41,14 @@ angular.module('aux.controllers', []).
       // Try youtube's long url
       var url = p.content.urls[0].url.split('watch?v=')[1];
 
-      // If the url match doesn't exist or it is a vimeo match
-      if ($scope.isVimeo(p) || !url) {
+      if ($scope.isVimeo(p)) {
 
         url = p.content.urls[0].url.split('/');
         p.videoId = url[url.length - 1];
+      } else if (!url) {
+
+        url = p.content.urls[0].url.split('/');
+        p.videoId = url[url.length - 1].split('&amp;list')[0];
       } else {
 
         p.videoId = url;
