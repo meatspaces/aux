@@ -4,7 +4,6 @@ html(ng-app='aux')
     title aux
     meta(content='width=device-width, height=device-height, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0', name='viewport')
     meta(content='yes', name='apple-mobile-web-app-capable')
-    meta(content='chrome=1', http-equiv='X-UA-Compatible')
     base(href='/')
     link(rel='shortcut icon', href='/images/favicon.png')
     link(rel='stylesheet', href='/stylesheets/main.css')
@@ -12,12 +11,13 @@ html(ng-app='aux')
   body(ng-controller='AppCtrl')
     #wrapper
       header
-        a.title.header(href='/') aux.meatspac.es
+        a.back(ng-show='isSecondary', href='/') &lt;
+        a.title.header(href='/', ng-show='!isSecondary') aux.meatspac.es
         ul.authenticate.title
           li(ng-if='isAuthenticated')
             a(href='javascript:;', ng-click='logout()') Logout
           li.add-parent(ng-if='isAuthenticated')
-            a.add(href="javascript:(function(){window.open('/add?url='+encodeURIComponent(window.location.href),'aux bookmarklet','left=200,top=200,width=320,height=300,personalbar=0,toolbar=0,scrollbars=0,resizable=0')})()") +
+            a.add(href="javascript:(function(){window.open('#{ siteHost }/add?url='+encodeURIComponent(window.location.href),'aux bookmarklet','left=200,top=200,width=320,height=250,personalbar=0,toolbar=0,scrollbars=0,resizable=0')})()") +
             span.tip
               .first 1. Drag this + to your bookmarks
               .second 2. Visit Youtube or Vimeo and run the bookmarklet
@@ -30,6 +30,7 @@ html(ng-app='aux')
     script(src='/javascripts/vendor/jquery.js')
     script(src='/javascripts/vendor/angular.js')
     script(src='/javascripts/vendor/angular-route.js')
+    script(src='/javascripts/vendor/angular-sanitize.js')
     script(src='/javascripts/app.js')
     script(src='/javascripts/factories.js')
     script(src='/javascripts/controllers.js')

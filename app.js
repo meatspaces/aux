@@ -5,6 +5,7 @@ var server = require('http').createServer(app);
 var nconf = require('nconf');
 var settings = require('./settings')(app, configurations, express);
 var whitelist = require('./whitelist');
+var Meatspace = require('meatspace-leveldb');
 
 nconf.argv().env().file({ file: 'local.json' });
 
@@ -19,15 +20,19 @@ var isLoggedIn = function(req, res, next) {
   }
 };
 
+var meat = new Meatspace({
+  fullName: nconf.get('full_name'),
+  username: nconf.get('username'),
+  postUrl: nconf.get('url'),
+  db: nconf.get('db'),
+  limit: 12
+});
+
 require('express-persona')(app, {
   audience: nconf.get('domain') + ':' + nconf.get('authPort')
 });
 
-app.use(function(req, res) {
-  res.sendfile(__dirname + '/views/layout.jade');
-});
-
 // routes
-require('./routes')(app, isLoggedIn);
+require('./routes')(app, meat, isLoggedIn, nconf);
 
 app.listen(process.env.PORT || nconf.get('port'));

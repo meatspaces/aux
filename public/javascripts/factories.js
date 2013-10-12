@@ -53,12 +53,8 @@ angular.module('aux.factories', []).
         method: 'POST'
       }).success(function (data) {
 
-        if (data.status === 'okay') {
-
-          resetUser();
-        } else {
-
-          resetUser();
+        resetUser();
+        if (data.status !== 'okay') {
           console.log('Logout failed because ' + data.reason);
         }
       }).error(function (data) {

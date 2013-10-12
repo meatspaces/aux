@@ -63,6 +63,20 @@ html, body {
 h1 {
     font-size: 1.5rem;
     line-height: 2.3rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 20px;
+    position: absolute;
+    text-shadow: #111 1px 0 2px;
+    width: 75%;
+    z-index: 3;
+}
+
+h1.share-title {
+    color: #111;
+    left: 50px;
+    padding: 10px;
+    top: 0;
 }
 
 a {
@@ -86,6 +100,18 @@ header {
     width: 100%;
 }
 
+a.back {
+    color: #111;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 1.8rem;
+    height: 59px;
+    line-height: 3.5rem;
+    padding: 0 10px;
+    text-align: center;
+    width: 30px;
+}
+
 .error {
     margin: 30px 0;
     line-height: 2rem;
@@ -106,7 +132,7 @@ button {
     color: #fff;
     display: block;
     font-size: 2rem;
-    margin: 10px auto;
+    margin: 20px auto 10px auto;
     padding: 5px 10px;
     width: 100px;
 }
@@ -119,14 +145,59 @@ button:hover {
 form input {
     background-color: #c5fcff;
     border: 0;
-    font-size: 1.5em;
+    font-size: 1.2em;
     margin: 3px 0 0;
-    padding: 5px;
+    padding: 10px 5px;
     width: 100%;
 }
 
 form input:last-child {
     background-color: #fdff71;
+}
+
+#url.error {
+    background-color: #ff7777;
+    line-height: auto;
+    margin: 3px 0 0;
+}
+
+.videos {
+    float: left;
+    width: 100%;
+}
+
+.videos > li {
+    float: left;
+    height: 0;
+    margin: 1% 0 0 1%;
+    min-width: 300px;
+    overflow: hidden;
+    padding-bottom: 25.25%;
+    position: relative;
+    width: 48%;
+}
+
+.video {
+    background-color: #111;
+    float: left;
+    height: 0;
+    min-width: 320px;
+    padding-bottom: 56.25%;
+    position: relative;
+    width: 100%;
+}
+
+.video iframe {
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.videos img {
+    width: 100%;
 }
 
 a.header, a.bookmarklet {
@@ -142,7 +213,7 @@ a.bookmarklet {
     font-size: 1rem;
 }
 
-a.header:hover {
+a.header:hover, a.back:hover {
     background-color: #fff;
 }
 
@@ -182,7 +253,7 @@ a.header:hover {
     position: absolute;
     text-align: left;
     top: 55px;
-    z-index: 2;
+    z-index: 4;
     width: 219px;
 }
 
@@ -213,11 +284,41 @@ a.header:hover {
 }
 
 .content {
-    margin: 30px 0;
+    background-color: #111;
+    float: left;
+    margin: 0 0 10px 0;
+    padding-bottom: 20px;
+    width: 100%;
 }
 
 main {
     color: #eee;
-    padding: 20px;
+    float: left;
+    height: 100%;
+    width: 100%;
 }
 
+@media only screen and (max-width: 815px) {
+    h1 {
+        font-size: 1.3rem;
+        width: 65%;
+    }
+}
+
+@media only screen and (max-width: 615px) {
+    h1 {
+        font-size: 1.1rem;
+        width: 65%;
+    }
+
+    .authenticate {
+        clear: both;
+        width: 100%;
+    }
+
+    .videos > li {
+        padding-bottom: 56.25%;
+        margin: 1% 0;
+        width: 100%;
+    }
+}

@@ -28,6 +28,7 @@ module.exports = function(app, configurations, express) {
     }));
     app.use(function(req, res, next) {
       res.locals.session = req.session;
+      res.locals.siteHost = nconf.get('domain') + ':' + nconf.get('authPort');
       next();
     });
     app.locals.pretty = true;

@@ -19,6 +19,10 @@ config(function ($routeProvider, $locationProvider) {
       controller: 'MediaCtrl',
       templateUrl: 'partials/add.html'
     })
+    .when('/share/:id', {
+      controller: 'MediaCtrl',
+      templateUrl: 'partials/single.html'
+    })
     .otherwise({
       redirectTo: '/'
     });

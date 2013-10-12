@@ -3,14 +3,21 @@
 $(function () {
   var form = $('form');
 
+  var url = decodeURIComponent(document.location.href.split('?url=')[1]);
+
+  form.find('#url').val(url);
+
   form.submit(function (ev) {
     ev.preventDefault();
 
     $.post('/add', form.serialize(), function (data) {
-      console.log('posted');
+
       window.close();
-    }).error(function () {
-      console.log('error')
+    }).error(function (data) {
+
+      form.find('#url').val('')
+                       .attr('placeholder', data.responseJSON.message)
+                       .addClass('error');
     });
   });
 });
