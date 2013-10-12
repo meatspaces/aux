@@ -68,7 +68,6 @@ h1 {
     text-overflow: ellipsis;
     padding: 20px;
     position: absolute;
-    text-shadow: #111 1px 0 2px;
     width: 75%;
     z-index: 3;
 }
