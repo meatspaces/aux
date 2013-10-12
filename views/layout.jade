@@ -21,6 +21,8 @@ html(ng-app='aux')
             span.tip
               .first 1. Drag this + to your bookmarks
               .second 2. Visit Youtube or Vimeo and run the bookmarklet
+              .first 3. On mobile? Copy and paste the following into a new bookmark
+                textarea javascript:(function(){window.open('#{ siteHost }/add?url='+encodeURIComponent(window.location.href),'aux bookmarklet','left=200,top=200,width=320,height=250,personalbar=0,toolbar=0,scrollbars=0,resizable=0')})()
           li(ng-if='!isAuthenticated')
             a(href='javascript:;', ng-click='login()') Sign in
       block content

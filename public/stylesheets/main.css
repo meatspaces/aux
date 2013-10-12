@@ -298,7 +298,14 @@ a.header:hover, a.back:hover {
 }
 
 .tip .second {
-    background-color: #ff5959;
+    background-color: #ff7373;
+}
+
+.tip textarea {
+    border: 0;
+    height: 35px;
+    resize: none;
+    width: 100%;
 }
 
 .authenticate li a.add {
