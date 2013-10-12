@@ -197,8 +197,34 @@ form input:last-child {
     width: 100%;
 }
 
-.videos img {
+.videos li .preview {
     width: 100%;
+}
+
+.avatar {
+    border-radius: 100px;
+    width: 80px;
+    z-index: 4;
+}
+
+.videos .avatar {
+    bottom: 5px;
+    cursor: pointer;
+    opacity: 0.6;
+    position: absolute;
+    right: 5px;
+    width: 50px;
+}
+
+.videos li:hover .avatar {
+    opacity: 1.0;
+}
+
+.actions .avatar {
+    display: inline-block;
+    float: right;
+    margin-right: 20px;
+    width: 70px;
 }
 
 a.header, a.bookmarklet {
@@ -315,6 +341,7 @@ main {
 .actions .delete {
     background-color: #f00;
     color: #ffcdcd;
+    margin-top: 15px;
 }
 
 .actions .delete:hover {

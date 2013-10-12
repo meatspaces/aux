@@ -1,5 +1,7 @@
 'use strict';
 
+var gravatar = require('gravatar');
+
 var utils = require('../lib/utils');
 
 module.exports = function(app, meat, isLoggedIn, nconf) {
@@ -37,7 +39,7 @@ module.exports = function(app, meat, isLoggedIn, nconf) {
 
       var message = {
         content: {
-          message: '',
+          message: gravatar.url(req.session.email),
           urls: []
         },
         meta: {
