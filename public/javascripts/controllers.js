@@ -5,6 +5,9 @@ angular.module('aux.controllers', []).
     var YOUTUBE = /(youtube.com(?:\/#)?\/watch\?)|(youtu\.be\/[A-Z0-9-_]+)/i;
     var VIMEO = /vimeo.com\/[0-9]+/i;
 
+    $rootScope.socket = io.connect(location.protocol + '//' + location.hostname +
+      (location.port ? ':' + location.port : ''));
+
     $rootScope.isVimeo = function (post) {
       return !!post.content.urls[0].url.match(VIMEO);
     };
@@ -61,6 +64,34 @@ angular.module('aux.controllers', []).
   }).
   controller('HomeCtrl', function ($scope, $http, $rootScope) {
     $rootScope.isSecondary = false;
+    $scope.posts = [];
+
+    var getPreview = function (p) {
+      var url = $rootScope.getVideoId(p);
+
+      if ($rootScope.isVimeo(p)) {
+        $http.jsonp('http://vimeo.com/api/v2/video/' + p.videoId + '.json?callback=JSON_CALLBACK'
+        ).success(function (data) {
+          p.src = data[0].thumbnail_large;
+        }).error(function (err, data) {
+          console.log('could not get vimeo image');
+        });
+      } else {
+        p.src = 'http://img.youtube.com/vi/' + p.videoId + '/0.jpg';
+      }
+
+      return p
+    };
+
+    $rootScope.socket.on('connect', function () {
+      $rootScope.socket.on('feed', function (data) {
+        data.post = getPreview(data.post);
+
+        $scope.$apply(function () {
+          $scope.posts.unshift(data.post);
+        });
+      });
+    });
 
     $http({
       url: '/api/recent',
@@ -69,20 +100,7 @@ angular.module('aux.controllers', []).
       $scope.posts = data.posts;
 
       $scope.posts.forEach(function (p) {
-        var url = $rootScope.getVideoId(p);
-
-        if ($rootScope.isVimeo(p)) {
-          $http.jsonp('http://vimeo.com/api/v2/video/' + p.videoId + '.json?callback=JSON_CALLBACK'
-          ).success(function (data) {
-            p.src = data[0].thumbnail_large;
-          }).error(function (err, data) {
-            console.log('could not get vimeo image');
-          });
-        } else {
-          p.src = 'http://img.youtube.com/vi/' + p.videoId + '/0.jpg';
-        }
-
-        console.log(p)
+        p = getPreview(p);
       });
 
     }).error(function (data) {

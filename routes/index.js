@@ -4,7 +4,7 @@ var gravatar = require('gravatar');
 
 var utils = require('../lib/utils');
 
-module.exports = function(app, meat, isLoggedIn, nconf) {
+module.exports = function(app, io, meat, isLoggedIn, nconf) {
   var YOUTUBE = /(youtube.com(?:\/#)?\/watch\?)|(youtu\.be\/[A-Z0-9-_]+)/i;
   var VIMEO = /vimeo.com\/[0-9]+/i;
 
@@ -69,6 +69,10 @@ module.exports = function(app, meat, isLoggedIn, nconf) {
               res.status(400);
               next(err);
             } else {
+              io.sockets.emit('feed', {
+                post: post
+              });
+
               res.json({
                 message: 'posted'
               });

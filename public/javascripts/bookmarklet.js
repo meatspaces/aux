@@ -3,7 +3,7 @@
 $(function () {
   var form = $('form');
 
-  var url = decodeURIComponent(document.location.href.split('?url=')[1]);
+  var url = decodeURIComponent(location.href.split('?url=')[1]);
 
   form.find('#url').val(url);
 

@@ -9,6 +9,14 @@ var Meatspace = require('meatspace-leveldb');
 
 nconf.argv().env().file({ file: 'local.json' });
 
+var io = require('socket.io').listen(server);
+
+io.configure(function () {
+  io.set('transports', ['websocket', 'xhr-polling']);
+  io.set('polling duration', 10);
+  io.set('log level', 1);
+});
+
 /* Filters for routes */
 
 var isLoggedIn = function(req, res, next) {
@@ -33,6 +41,6 @@ require('express-persona')(app, {
 });
 
 // routes
-require('./routes')(app, meat, isLoggedIn, nconf);
+require('./routes')(app, io, meat, isLoggedIn, nconf);
 
-app.listen(process.env.PORT || nconf.get('port'));
+server.listen(process.env.PORT || nconf.get('port'));
