@@ -9,11 +9,11 @@ angular.module('aux.controllers', []).
       (location.port ? ':' + location.port : ''));
 
     $rootScope.isVimeo = function (post) {
-      return (if post && !!post.content.urls[0].url.match(VIMEO));
+      return (post && !!post.content.urls[0].url.match(VIMEO));
     };
 
     $rootScope.isYoutube = function (post) {
-      return (if post && !!post.content.urls[0].url.match(YOUTUBE));
+      return (post && !!post.content.urls[0].url.match(YOUTUBE));
     };
 
     $rootScope.isSecondary = false;
