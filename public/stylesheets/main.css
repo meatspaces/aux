@@ -118,7 +118,17 @@ a.back {
     line-height: 2rem;
 }
 
-.error a {
+.error-page {
+    margin: 80px 20px 10px 20px;
+}
+
+.error-page > p {
+    color: #fff;
+    font-size: 1.2rem;
+    line-height: 2.2rem;
+}
+
+.error-page a {
     color: #c1ea1c;
 }
 
@@ -370,6 +380,10 @@ main {
     .authenticate {
         clear: both;
         width: 100%;
+    }
+
+    .error-page > p {
+        font-size: 1rem;
     }
 
     .videos > li {
