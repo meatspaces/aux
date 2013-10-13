@@ -132,7 +132,7 @@ module.exports = function(app, io, meat, isLoggedIn, nconf) {
 
         res.send({
           post: post,
-          isAdmin: utils.isEditor(req),
+          isAdmin: utils.isEditor(req, post.content.message),
           prev: false,
           next: false
         });
