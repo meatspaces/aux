@@ -373,9 +373,14 @@ main {
 .pagination a {
     color: #fff;
     display: inline-block;
-    font-size: 2rem;
+    font-family: 'digital_dreamregular';
+    font-size: 1.9rem;
     margin: 20px;
     padding: 10 20px;
+}
+
+.pagination a:hover {
+    color: #c1ea1c;
 }
 
 .pagination .prev {
