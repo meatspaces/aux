@@ -179,7 +179,7 @@ form input:last-child {
 .videos > li {
     float: left;
     height: 0;
-    margin: 1% 0 0 1%;
+    margin: 0 0 1% 1%;
     min-width: 300px;
     overflow: hidden;
     padding-bottom: 25.25%;
@@ -256,7 +256,7 @@ a.header:hover, a.back:hover {
 .authenticate {
     float: right;
     text-align: center;
-    width: 159px;
+    width: 257px;
     z-index: 2;
 }
 

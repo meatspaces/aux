@@ -1,6 +1,19 @@
 'use strict';
 
 var gravatar = require('gravatar');
+var Feed = require('feed');
+
+var feed = new Feed({
+  title: 'aux.meatspac.es',
+  description: "What we're listening to and watching",
+  link: 'http://aux.meatspac.es',
+  image: 'http://aux.meatspac.es/logo.png',
+  author: {
+    name: 'aux',
+    email: 'jen@meatspac.es',
+    link: 'http://meatspac.es'
+  }
+});
 
 var utils = require('../lib/utils');
 
@@ -89,6 +102,10 @@ module.exports = function(app, io, meat, isLoggedIn, nconf) {
     }
   });
 
+  app.get('/feed', function (req, res) {
+    res.redirect('/api/recent');
+  });
+
   app.get('/api/recent', function (req, res) {
     var prevPage = 0;
     var nextPage = 0;
@@ -111,10 +128,26 @@ module.exports = function(app, io, meat, isLoggedIn, nconf) {
         prevPage = 0;
       }
 
-      res.json({
-        posts: posts,
-        prev: prevPage,
-        next: nextPage
+      res.format({
+        json: function () {
+          res.send({
+            posts: posts,
+            prev: prevPage,
+            next: nextPage
+          });
+        },
+        xml: function () {
+          posts.forEach(function (p) {
+            feed.item({
+              title: p.content.urls[0].url,
+              link: p.content.urls[0].url,
+              description: '<p>posted by <img src="' + p.content.message + '"></p>',
+              date: new Date(p.id)
+            });
+          });
+
+          res.send(feed.render('rss-2.0'));
+        }
       });
     });
   });
