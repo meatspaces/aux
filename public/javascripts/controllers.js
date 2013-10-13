@@ -64,6 +64,8 @@ angular.module('aux.controllers', []).
     }
   }).
   controller('HomeCtrl', function ($scope, $http, $rootScope) {
+    var POST_LIMIT = 12;
+
     $rootScope.isSecondary = false;
     $scope.posts = [];
 
@@ -81,7 +83,7 @@ angular.module('aux.controllers', []).
         p.src = 'http://img.youtube.com/vi/' + p.videoId + '/0.jpg';
       }
 
-      return p
+      return p;
     };
 
     socket.on('connect', function () {
@@ -90,6 +92,10 @@ angular.module('aux.controllers', []).
 
         $scope.$apply(function () {
           $scope.posts.unshift(data.post);
+
+          if ($scope.posts.length > 12) {
+            $scope.posts.pop();
+          }
         });
       });
     });
