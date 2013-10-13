@@ -343,21 +343,35 @@ main {
 
 .actions {
     float: left;
-    margin: 20px 0;
+    font-family: 'digital_dreamregular';
+    margin: 0 0 20px 0;
     width: 100%;
+}
+
+.actions img {
+    margin: 15px 20px;
+}
+
+.actions .details {
+    clear: both;
+    color: #fff;
+    float: left;
+    font-size: 0.9rem;
+    margin: 15px 20px;
 }
 
 .actions a {
     font-size: 0.9rem;
     display: inline-block;
-    font-family: 'digital_dreamregular';
     padding: 15px 20px;
 }
 
 .actions .delete {
     background-color: #f00;
     color: #ffcdcd;
-    margin-top: 15px;
+    display: inline-block;
+    float: left;
+    margin-top: 25px;
 }
 
 .actions .delete:hover {
@@ -404,9 +418,17 @@ main {
         width: 65%;
     }
 
+    .actions .details {
+        font-size: 0.8rem;
+    }
+
     .actions a {
         font-size: 0.8rem;
         padding: 10px 20px;
+    }
+
+    .actions img.avatar {
+        width: 50px;
     }
 
     .authenticate {

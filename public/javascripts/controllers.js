@@ -153,6 +153,7 @@ angular.module('aux.controllers', []).
     }).success(function (data) {
       var url = $rootScope.getVideoId(data.post);
 
+      $scope.posted = moment.unix(Math.round(data.post.id / 1000)).fromNow();
       $scope.title = data.post.content.urls[0].title;
       $scope.data = data;
     }).error(function (data) {
