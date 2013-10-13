@@ -5,9 +5,6 @@ angular.module('aux.controllers', []).
     var YOUTUBE = /(youtube.com(?:\/#)?\/watch\?)|(youtu\.be\/[A-Z0-9-_]+)/i;
     var VIMEO = /vimeo.com\/[0-9]+/i;
 
-    $rootScope.socket = io.connect(location.protocol + '//' + location.hostname +
-      (location.port ? ':' + location.port : ''));
-
     $rootScope.isVimeo = function (post) {
       return (post && !!post.content.urls[0].url.match(VIMEO));
     };
@@ -87,8 +84,8 @@ angular.module('aux.controllers', []).
       return p
     };
 
-    $rootScope.socket.on('connect', function () {
-      $rootScope.socket.on('feed', function (data) {
+    socket.on('connect', function () {
+      socket.on('feed', function (data) {
         data.post = getPreview(data.post);
 
         $scope.$apply(function () {
