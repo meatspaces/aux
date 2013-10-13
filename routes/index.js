@@ -140,17 +140,38 @@ module.exports = function(app, io, meat, isLoggedIn, nconf) {
     });
   });
 
-  app.delete('/api/v/:id', function (req, res) {
-    meat.del(req.params.id, function (err, status) {
+  app.delete('/api/v/:id', isLoggedIn, function (req, res) {
+    meat.get(req.params.id, function (err, post) {
       if (err) {
-        res.status(400);
+
+        res.status(404);
         res.json({
-          message: err.toString()
-        })
-      } else {
-        res.json({
-          message: 'deleted'
+          message: 'not found'
         });
+
+      } else {
+
+        if (post.content.message === gravatar.url(req.session.email)) {
+
+          meat.del(req.params.id, function (err, status) {
+            if (err) {
+              res.status(400);
+              res.json({
+                message: err.toString()
+              })
+            } else {
+              res.json({
+                message: 'deleted'
+              });
+            }
+          });
+        } else {
+
+          res.status(400);
+          res.json({
+            message: 'not allowed to delete'
+          });
+        }
       }
     });
   });
