@@ -365,6 +365,27 @@ main {
     color: #f00;
 }
 
+.pagination {
+    float: left;
+    width: 100%;
+}
+
+.pagination a {
+    color: #fff;
+    display: inline-block;
+    font-size: 2rem;
+    margin: 20px;
+    padding: 10 20px;
+}
+
+.pagination .prev {
+    float: left;
+}
+
+.pagination .next {
+    float: right;
+}
+
 @media only screen and (max-width: 815px) {
     h1 {
         font-size: 1.3rem;

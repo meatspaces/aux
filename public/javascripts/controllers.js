@@ -63,11 +63,16 @@ angular.module('aux.controllers', []).
       persona.logout();
     }
   }).
-  controller('HomeCtrl', function ($scope, $http, $rootScope) {
+  controller('HomeCtrl', function ($scope, $http, $routeParams, $rootScope) {
     var POST_LIMIT = 12;
 
     $rootScope.isSecondary = false;
     $scope.posts = [];
+
+    $scope.secondaryPage = function () {
+      console.log(parseInt($routeParams.page, 10))
+      return parseInt($routeParams.page, 10) > 0;
+    };
 
     var getPreview = function (p) {
       var url = $rootScope.getVideoId(p);
@@ -101,10 +106,12 @@ angular.module('aux.controllers', []).
     });
 
     $http({
-      url: '/api/recent',
+      url: '/api/recent?page=' + ($routeParams.page || 0),
       method: 'GET'
     }).success(function (data) {
       $scope.posts = data.posts;
+      $scope.prev = data.prev;
+      $scope.next = data.next;
 
       $scope.posts.forEach(function (p) {
         p = getPreview(p);

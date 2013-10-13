@@ -90,10 +90,31 @@ module.exports = function(app, io, meat, isLoggedIn, nconf) {
   });
 
   app.get('/api/recent', function (req, res) {
-    meat.shareRecent(req.query.start || 0, function (err, posts) {
+    var prevPage = 0;
+    var nextPage = 0;
+    var currPage = 0;
+
+    if (req.query.page) {
+      currPage = parseInt(req.query.page, 10) || 0;
+    }
+
+    meat.shareRecent(req.query.page || 0, function (err, posts) {
+      nextPage = currPage + 1;
+
+      if (posts.length < meat.limit) {
+        nextPage = 0;
+      }
+
+      prevPage = currPage - 1;
+
+      if (prevPage < 0) {
+        prevPage = 0;
+      }
+
       res.json({
         posts: posts,
-        total: posts.length
+        prev: prevPage,
+        next: nextPage
       });
     });
   });
