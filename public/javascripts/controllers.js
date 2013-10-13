@@ -70,8 +70,11 @@ angular.module('aux.controllers', []).
     $scope.posts = [];
 
     $scope.secondaryPage = function () {
-      console.log(parseInt($routeParams.page, 10))
-      return parseInt($routeParams.page, 10) > 0;
+      if (isNaN(parseInt($routeParams.page, 10))) {
+        return 0;
+      } else {
+        return parseInt($routeParams.page, 10) > 0;
+      }
     };
 
     var getPreview = function (p) {
