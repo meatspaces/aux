@@ -137,6 +137,10 @@ module.exports = function(app, io, meat, isLoggedIn, nconf) {
           });
         },
         xml: function () {
+          posts = posts.sort(function (a, b) {
+            return a.id - b.id
+          });
+
           posts.forEach(function (p) {
             feed.item({
               title: p.content.urls[0].url,
