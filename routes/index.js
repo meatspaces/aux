@@ -138,7 +138,7 @@ module.exports = function(app, io, meat, isLoggedIn, nconf) {
         },
         xml: function () {
           posts = posts.sort(function (a, b) {
-            return a.id - b.id
+            return b.id - a.id
           });
 
           posts.forEach(function (p) {
