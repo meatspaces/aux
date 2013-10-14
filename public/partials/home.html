@@ -1,5 +1,5 @@
 <ul class="videos">
-  <li ng-repeat="post in posts">
+  <li ng-repeat="post in posts track by $index">
     <a href="/v/{{ post.id }}" ng-if="isVimeo(post)">
       <img src="{{ post.src }}" class="preview">
     </a>
