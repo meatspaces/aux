@@ -414,7 +414,8 @@ main {
 
 @media only screen and (max-width: 615px) {
     h1 {
-        font-size: 1.1rem;
+        font-size: 0.8rem;
+        line-height: 1.2rem;
         width: 65%;
     }
 
