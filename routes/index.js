@@ -3,18 +3,6 @@
 var gravatar = require('gravatar');
 var Feed = require('feed');
 
-var feed = new Feed({
-  title: 'aux.meatspac.es',
-  description: "What we're listening to and watching",
-  link: 'http://aux.meatspac.es',
-  image: 'http://aux.meatspac.es/logo.png',
-  author: {
-    name: 'aux',
-    email: 'jen@meatspac.es',
-    link: 'http://meatspac.es'
-  }
-});
-
 var utils = require('../lib/utils');
 
 module.exports = function(app, io, meat, isLoggedIn, nconf) {
@@ -137,8 +125,16 @@ module.exports = function(app, io, meat, isLoggedIn, nconf) {
           });
         },
         xml: function () {
-          posts = posts.sort(function (a, b) {
-            return b.id - a.id
+          var feed = new Feed({
+            title: 'aux.meatspac.es',
+            description: "What we're listening to and watching",
+            link: 'http://aux.meatspac.es',
+            image: 'http://aux.meatspac.es/logo.png',
+            author: {
+              name: 'aux',
+              email: 'jen@meatspac.es',
+              link: 'http://meatspac.es'
+            }
           });
 
           posts.forEach(function (p) {
