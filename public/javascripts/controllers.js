@@ -45,10 +45,10 @@ angular.module('aux.controllers', []).
       } else if (!url) {
 
         url = p.content.urls[0].url.split('/');
-        p.videoId = url[url.length - 1].split('&amp;list')[0];
+        p.videoId = url[url.length - 1].split('&amp;')[0];
       } else {
 
-        url = url.split('&amp;list')[0];
+        url = url.split('&amp;')[0];
         p.videoId = url;
       }
 
